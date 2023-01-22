@@ -59,16 +59,16 @@ archAffix(){
 
 info_bar(){
     clear
-    echo -e "${GREEN} --------------------------------------------------------------------- ${PLAIN}"
-    echo -e "${GREEN}   __   __           _    _ _____    ______             _ _     _      ${PLAIN}"
-    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  |  ____|           | (_)   | |     ${PLAIN}"
-    echo -e "${GREEN}    \ V /   ______  | |  | | | |    | |__   _ __   __ _| |_ ___| |__   ${PLAIN}"
-    echo -e "${GREEN}     > <   |______| | |  | | | |    |  __| |  _ \ / _  | | / __|  _ \  ${PLAIN}"
-    echo -e "${GREEN}    / . \           | |__| |_| |_   | |____| | | | (_| | | \__ \ | | | ${PLAIN}"
-    echo -e "${GREEN}   /_/ \_\           \____/|_____|  |______|_| |_|\__, |_|_|___/_| |_| ${PLAIN}"
-    echo -e "${GREEN}                                                  __/ |                ${PLAIN}"
-    echo -e "${GREEN}                                                 |___/                 ${PLAIN}"
-    echo -e "${GREEN} --------------------------------------------------------------------- ${PLAIN}"
+    echo -e "${GREEN} -----------------------------------${PLAIN}"
+    echo -e "${GREEN}   __   __           _    _ _____   ${PLAIN}"
+    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  ${PLAIN}"
+    echo -e "${GREEN}    \ V /   ______  | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}     > <   |______| | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}    / . \           | |__| |_| |_   ${PLAIN}"
+    echo -e "${GREEN}   /_/ \_\           \____/|_____|  ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN} -----------------------------------${PLAIN}"
     echo ""
     echo -e "OS: ${GREEN} ${CMD} ${PLAIN}"
     echo ""
@@ -112,14 +112,14 @@ download_xui(){
 
     
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/NidukaAkalanka/x-ui-english/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/config/version >/dev/null 2>&1)
+        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/jafariebi/x_ui/main/config/version >/dev/null 2>&1)
         if [[ -z "$last_version" ]]; then
             red "Detecting the X-UI version failed, please make sure your server can connect to the Github API"
             rm -f install.sh
             exit 1
         fi
         yellow "The latest version of X-UI is detected: $ {last_version}, starting installation..."
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/NidukaAkalanka/x-ui-english/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/jafariebi/x_ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
         if [[ $? -ne 0 ]]; then
             red "Download the X-UI failure, please make sure your server can connect and download files from github"
             rm -f install.sh
@@ -127,7 +127,7 @@ download_xui(){
         fi
     else
         last_version=$1
-        url="https://github.com/NidukaAkalanka/x-ui-english/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz"
+        url="https://github.com/jafariebi/x_ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz"
         yellow "Starting installation x-ui $1"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
@@ -145,7 +145,7 @@ download_xui(){
     chmod +x x-ui bin/xray-linux-$(archAffix)
     cp -f x-ui.service /etc/systemd/system/
     
-    wget -N --no-check-certificate https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/x-ui.sh -O /usr/bin/x-ui
+    wget -N --no-check-certificate https://raw.githubusercontent.com/jafariebi/x_ui/main/x-ui.sh -O /usr/bin/x-ui
     chmod +x /usr/local/x-ui/x-ui.sh
     chmod +x /usr/bin/x-ui
 }
@@ -213,20 +213,20 @@ install_xui() {
     rm -f install.sh
     green "X-UI v${last_version} Installation / Upgrade is Completed, The Panel has been Started"
     echo -e ""
-    echo -e "${GREEN} --------------------------------------------------------------------  ${PLAIN}"
-    echo -e "${GREEN}   __   __           _    _ _____    ______             _ _     _      ${PLAIN}"
-    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  |  ____|           | (_)   | |     ${PLAIN}"
-    echo -e "${GREEN}    \ V /   ______  | |  | | | |    | |__   _ __   __ _| |_ ___| |__   ${PLAIN}"
-    echo -e "${GREEN}     > <   |______| | |  | | | |    |  __| |  _ \ / _  | | / __|  _ \  ${PLAIN}"
-    echo -e "${GREEN}    / . \           | |__| |_| |_   | |____| | | | (_| | | \__ \ | | | ${PLAIN}"
-    echo -e "${GREEN}   /_/ \_\           \____/|_____|  |______|_| |_|\__, |_|_|___/_| |_| ${PLAIN}"
-    echo -e "${GREEN}                                                  __/ |                ${PLAIN}"
-    echo -e "${GREEN}                                                 |___/                 ${PLAIN}"
-    echo -e "${GREEN} --------------------------------------------------------------------- ${PLAIN}"
+    echo -e "${GREEN} -----------------------------------${PLAIN}"
+    echo -e "${GREEN}   __   __           _    _ _____   ${PLAIN}"
+    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  ${PLAIN}"
+    echo -e "${GREEN}    \ V /   ______  | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}     > <   |______| | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}    / . \           | |__| |_| |_   ${PLAIN}"
+    echo -e "${GREEN}   /_/ \_\           \____/|_____|  ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN} -----------------------------------${PLAIN}"
     echo -e ""
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "--------------------------------------------"
     echo -e "X-UI MANAGEMENT SCRIPT USAGE: "
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "--------------------------------------------"
     echo -e "x-ui              - Show the management menu"
     echo -e "x-ui start        - Start X-UI panel"
     echo -e "x-ui stop         - Stop X-UI panel"
@@ -239,16 +239,17 @@ install_xui() {
     echo -e "x-ui update       - Update X-UI panel"
     echo -e "x-ui install      - Install X-UI panel"
     echo -e "x-ui uninstall    - Uninstall X-UI panel"
-    echo -e "------------------------------------------------------------------------------"
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "--------------------------------------------"
+    echo -e "--------------------------------------------"
     echo -e "Please do consider supporting authors"
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "--------------------------------------------"
     echo -e "vaxilu            - https://github.com/vaxilu" 
     echo -e "taffychan         - https://github.com/taffychan"  
     echo -e "Hossin Asaadi     - https://github.com/hossinasaadi"
     echo -e "Yu FranzKafka     - https://github.com/FranzKafkaYu"
     echo -e "Niduka Akalanka   - https://github.com/NidukaAkalanka"
-    echo -e "--------------------------------------------------------------------------------"
+    echo -e "Niduka Akalanka   - https://github.com/jafariebi"    
+    echo -e "--------------------------------------------"
     show_login_info
     echo -e ""
     yellow "(If you cannot access the X-UI panel, first enter the X-UI command in the SSH command line, and then select the 17 option to let go of the firewall port)"
