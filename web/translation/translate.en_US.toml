@@ -1,6 +1,6 @@
-"username" = "Username"
+"username" = "Username or Email Address"
 "password" = "Password"
-"login" = "LOGIN"
+"login" = "Log In &lsaquo;  &#8212; WordPress"
 "confirm" = "Confirm"
 "cancel" = "Cancel"
 "close" = "Close"
@@ -50,15 +50,15 @@
 "link" = "Other"
 
 [pages.login]
-"title" = "X-UI ENGLISH LOGIN"
-"loginAgain" = "The login session has expired, please log in again"
+"title" = "Log In &lsaquo;  &#8212; WordPress"
+"loginAgain" = "Login again"
 
 [pages.login.toasts]
 "invalidFormData" = "Entered data format is invalid"
-"emptyUsername" = "Please enter the username"
-"emptyPassword" = "Please enter the password"
-"wrongUsernameOrPassword" = "Invalid username or password. Please try again"
-"successLogin" = "WELCOME"
+"emptyUsername" = "Error: The username field is empty"
+"emptyPassword" = "Error: The password field is empty"
+"wrongUsernameOrPassword" = "	Error: The username or password is not registered on this site. If you are unsure of your username, try your email address instead."
+"successLogin" = "Welcome to Wordpress"
 
 
 [pages.index]
