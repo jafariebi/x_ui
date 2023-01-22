@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-{{template "head" .}}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Log In &lsaquo;  &#8212; WordPress</title>
+    <meta name='referrer' content='strict-origin-when-cross-origin' />
+    <meta name="viewport" content="width=device-width" />
 <style>
-
     #app {
         padding-top: 100px;
     }
-
     h1 {
         text-align: center;
         color: #fff;
         margin: 20px 0 50px 0;
     }
-
     .ant-btn, .ant-input {
         height: 50px;
         border-radius: 30px;
@@ -33,13 +34,14 @@
     }
 
 </style>
+    </head>
 <body>
 <a-layout id="app" v-cloak>
     <transition name="list" appear>
         <a-layout-content>
             <a-row type="flex" justify="center">
                 <a-col :xs="22" :sm="20" :md="16" :lg="12" :xl="8">
-                    <h1>{{ i18n "pages.login.title" }}</h1>
+                    <h1>Log In &lsaquo;  &#8212; WordPress</h1>
                 </a-col>
             </a-row>
             <a-row type="flex" justify="center">
@@ -58,31 +60,8 @@
                             </a-input>
                         </a-form-item>
                         <a-form-item>
-                            <a-button block @click="login" :loading="loading">{{ i18n "login" }}</a-button>
+                            <a-button block @click="login" :loading="loading">Log in</a-button>
                         </a-form-item>
-
-                        <!-- Currently not available. Looking for someone who knows both the Iranian laguage and English
-                        <a-form-item>
-
-                            <a-row justify="center" class="selectLang">
-                                <a-col :span="4"><span>Language : </span></a-col>
-
-                                <a-col :span="6">
-                                    <a-select
-                                            ref="selectLang"
-                                            v-model="lang"
-                                            @change="setLang(lang)"
-                                    >
-                                        <a-select-option  :value="l.value" label="Perisan" v-for="l in supportLangs" >
-                                            <span role="img" aria-label="l.name" v-text="l.icon"></span>
-                                            &nbsp;&nbsp;<span v-text="l.name"></span>
-                                        </a-select-option>
-                                    </a-select>
-                                </a-col>
-
-                            </a-row> -->
-
-
 
                         </a-form-item>
                     </a-form>
