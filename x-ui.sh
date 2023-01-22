@@ -107,7 +107,7 @@ update() {
             rm -rf /usr/local/x-ui/
         fi
         
-        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/config/version)
+        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/jafariebi/x_ui/main/config/version)
         if [[ -z "$last_version" ]]; then
             red "Detecting the X-UI version failed, please make sure your server can connect to the GitHub API"
             exit 1
