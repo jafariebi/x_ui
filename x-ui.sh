@@ -108,9 +108,6 @@ update() {
         fi
         
         last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/jafariebi/x_ui/main/config/version)
-        if [[ -z "$last_version" ]]; then
-            red "Detecting the X-UI version failed, please make sure your server can connect to the GitHub API"
-        fi
         
         yellow "The latest version of X-UI is: $ {last_version}, starting update..."
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/jafariebi/x_ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
