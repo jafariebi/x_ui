@@ -88,7 +88,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/jafariebi/x_ui/main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -107,14 +107,14 @@ update() {
             rm -rf /usr/local/x-ui/
         fi
         
-        last_version=$(curl -Ls "https://api.github.com/repos/NidukaAkalanka/x-ui-english/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/config/version)
+        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/config/version)
         if [[ -z "$last_version" ]]; then
             red "Detecting the X-UI version failed, please make sure your server can connect to the GitHub API"
             exit 1
         fi
         
         yellow "The latest version of X-UI is: $ {last_version}, starting update..."
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/NidukaAkalanka/x-ui-english/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/jafariebi/x_ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
         if [[ $? -ne 0 ]]; then
             red "Download the X-UI failure, please make sure your server can connect and download the files from github"
             exit 1
@@ -128,7 +128,7 @@ update() {
         chmod +x x-ui bin/xray-linux-$(archAffix)
         cp -f x-ui.service /etc/systemd/system/
         
-        wget -N --no-check-certificate https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/x-ui.sh -O /usr/bin/x-ui
+        wget -N --no-check-certificate https://raw.githubusercontent.com/jafariebi/x_ui/main/x-ui.sh -O /usr/bin/x-ui
         chmod +x /usr/local/x-ui/x-ui.sh
         chmod +x /usr/bin/x-ui
         
@@ -324,7 +324,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/NidukaAkalanka/x-ui-english/raw/master/x-ui.sh
+    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/jafariebi/x_ui/raw/master/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         red "Downloading the script failed, please make sure your server can connect and download the files from github"
@@ -478,20 +478,20 @@ check_login_info(){
 show_usage() {
     green "X-UI English v${last_version} Installation is Completed, The Panel has been Started"
     echo -e ""
-    echo -e "${GREEN} --------------------------------------------------------------------- ${PLAIN}"
-    echo -e "${GREEN}   __   __           _    _ _____    ______             _ _     _      ${PLAIN}"
-    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  |  ____|           | (_)   | |     ${PLAIN}"
-    echo -e "${GREEN}    \ V /   ______  | |  | | | |    | |__   _ __   __ _| |_ ___| |__   ${PLAIN}"
-    echo -e "${GREEN}     > <   |______| | |  | | | |    |  __| |  _ \ / _  | | / __|  _ \  ${PLAIN}"
-    echo -e "${GREEN}    / . \           | |__| |_| |_   | |____| | | | (_| | | \__ \ | | | ${PLAIN}"
-    echo -e "${GREEN}   /_/ \_\           \____/|_____|  |______|_| |_|\__, |_|_|___/_| |_| ${PLAIN}"
-    echo -e "${GREEN}                                                  __/ |                ${PLAIN}"
-    echo -e "${GREEN}                                                 |___/                 ${PLAIN}"
-    echo -e "${GREEN} --------------------------------------------------------------------- ${PLAIN}"
+    echo -e "${GREEN} ---------------------------------- ${PLAIN}"
+    echo -e "${GREEN}   __   __           _    _ _____   ${PLAIN}"
+    echo -e "${GREEN}   \ \ / /          | |  | |_   _|  ${PLAIN}"
+    echo -e "${GREEN}    \ V /   ______  | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}     > <   |______| | |  | | | |    ${PLAIN}"
+    echo -e "${GREEN}    / . \           | |__| |_| |_   ${PLAIN}"
+    echo -e "${GREEN}   /_/ \_\           \____/|_____|  ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN}                                    ${PLAIN}"
+    echo -e "${GREEN} -----------------------------------${PLAIN}"
     echo -e ""
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "----------------------------------------------------------------"
     echo -e "X-UI MANAGEMENT SCRIPT USAGE: "
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "----------------------------------------------------------------"
     echo -e "x-ui              - Show the management menu"
     echo -e "x-ui start        - Start X-UI panel"
     echo -e "x-ui stop         - Stop X-UI panel"
@@ -504,49 +504,49 @@ show_usage() {
     echo -e "x-ui update       - Update X-UI panel"
     echo -e "x-ui install      - Install X-UI panel"
     echo -e "x-ui uninstall    - Uninstall X-UI panel"
-    echo -e "------------------------------------------------------------------------------"
+    echo -e "----------------------------------------------------------------"
     echo -e ""
 }
 
 show_menu() {
     echo -e "
- -------------------------------------------------------------------------------- 
-  ${GREEN}   __   __           _    _ _____    ______             _ _     _       ${PLAIN} 
-  ${GREEN}   \ \ / /          | |  | |_   _|  |  ____|           | (_)   | |      ${PLAIN}
-  ${GREEN}    \ V /   ______  | |  | | | |    | |__   _ __   __ _| |_ ___| |__    ${PLAIN}
-  ${GREEN}     > <   |______| | |  | | | |    |  __| |  _ \ / _  | | / __|  _ \   ${PLAIN}
-  ${GREEN}    / . \           | |__| |_| |_   | |____| | | | (_| | | \__ \ | | |  ${PLAIN} 
-  ${GREEN}   /_/ \_\           \____/|_____|  |______|_| |_|\__, |_|_|___/_| |_|  ${PLAIN}
-  ${GREEN}                                                  __/ |                 ${PLAIN}
-  ${GREEN}                                                 |___/                  ${PLAIN}
---------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------- 
+  ${GREEN}   __   __           _    _ _____   ${PLAIN} 
+  ${GREEN}   \ \ / /          | |  | |_   _|  ${PLAIN}
+  ${GREEN}    \ V /   ______  | |  | | | |    ${PLAIN}
+  ${GREEN}     > <   |______| | |  | | | |    ${PLAIN}
+  ${GREEN}    / . \           | |__| |_| |_   ${PLAIN} 
+  ${GREEN}   /_/ \_\           \____/|_____|  ${PLAIN}
+  ${GREEN}                                    ${PLAIN}
+  ${GREEN}                                    ${PLAIN}
+----------------------------------------------------------------------------
   ${GREEN}X-UI ENGLISH PANEL MANAGEMENT SCRIPT ${PLAIN}
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
   ${GREEN}0.${PLAIN} Exit Script
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
   ${GREEN}1.${PLAIN} Install X-UI
   ${GREEN}2.${PLAIN} Update X-UI
   ${GREEN}3.${PLAIN} Uninstalled X-UI
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
   ${GREEN}4.${PLAIN} Reset Username Password
   ${GREEN}5.${PLAIN} Reset Panel Settings
   ${GREEN}6.${PLAIN} Set the Panel Web Port
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
   ${GREEN}7.${PLAIN} Start X-UI
   ${GREEN}8.${PLAIN} Stop X-UI
   ${GREEN}9.${PLAIN} Restart X-UI
  ${GREEN}10.${PLAIN} Check X-UI Status
  ${GREEN}11.${PLAIN} View X-UI Log
----------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  ${GREEN}12.${PLAIN} Set the X-UI auto-start at boot
  ${GREEN}13.${PLAIN} Cancel the X-UI auto-start at boot
----------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  ${GREEN}14.${PLAIN} Update Geosite and Geoip
  ${GREEN}15.${PLAIN} One-click installation BBR (the latest kernel)
  ${GREEN}16.${PLAIN} One-click application certificate (ACME script application)
  ${GREEN}17.${PLAIN} Open all network ports in the server
  ${GREEN}18.${PLAIN} Install and configure Cloudflare Warp (Experimental)
- --------------------------------------------------------------------------------   "
+ ----------------------------------------------------------------------------   "
     show_status
     echo ""
     if [[ -n $v4 && -z $v6 ]]; then
@@ -576,7 +576,7 @@ show_menu() {
         13) check_install && disable_xui ;;
         14) update_geo ;;
         15) install_bbr ;;
-        16) wget -N --no-check-certificate https://raw.githubusercontent.com/NidukaAkalanka/x-ui-english/main/acme.sh && bash acme.sh && before_show_menu ;;
+        16) wget -N --no-check-certificate https://raw.githubusercontent.com/jafariebi/x_ui/main/acme.sh && bash acme.sh && before_show_menu ;;
         17) open_ports ;;
         18) wget -N --no-check-certificate https://raw.githubusercontent.com/taffychan/warp/main/warp.sh && bash warp.sh && before_show_menu ;;
         *) red "Please enter the correct option [0-18]" ;;
