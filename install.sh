@@ -8,7 +8,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本111！\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -26,7 +26,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
+    echo -e "${red}未检测到系统版本，请联系脚本作者222！${plain}\n" && exit 1
 fi
 
 arch=$(arch)
@@ -43,7 +43,7 @@ fi
 echo "架构: ${arch}"
 
 if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
-    echo "本软件不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者"
+    echo "本软件不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者333"
     exit -1
 fi
 
@@ -81,7 +81,7 @@ install_base() {
 
 #This function will be called when user installed x-ui out of sercurity
 config_after_install() {
-    echo -e "${yellow}出于安全考虑，安装/更新完成后需要强制修改端口与账户密码${plain}"
+    echo -e "${yellow}出于安全考虑，安装/更新完成后需要强制修改端口与账户密码4444444444444444444${plain}"
     read -p "确认是否继续,如选择n则跳过本次端口与账户密码设定[y/n]": config_confirm
     if [[ x"${config_confirm}" == x"y" || x"${config_confirm}" == x"Y" ]]; then
         read -p "请设置您的账户名:" config_account
@@ -97,8 +97,8 @@ config_after_install() {
         echo -e "${yellow}面板端口设定完成${plain}"
     else
         echo -e "${red}已取消设定...${plain}"
-        echo -e "${red}如属于全新安装,默认网页端口为 ${green}54321${plain}，用户名与密码均为 ${green}admin${plain},请及时修改"
-        echo -e "${red}如属于版本升级,则保留之前设置项,登录方式保持不变,可输入x-ui后键入数字7查看登录信息${plain}"
+        echo -e "${red}如属于全新安装,默认网页端口为 ${green}54321${plain}，用户名与密码均为55555555555555555 ${green}admin${plain},请及时修改"
+        echo -e "${red}如属于版本升级,则保留之前设置项,登录方式保持不变,可输入x-ui后键入数字7查看登录信息666666666666666666${plain}"
     fi
 }
 
@@ -107,24 +107,24 @@ install_x-ui() {
     cd /usr/local/
 
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/FranzKafkaYu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}检测 x-ui 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 x-ui 版本安装${plain}"
+            echo -e "${red}检测 x-ui 版本失败，可能是超出 Github API 限制，请稍后再试77777777777777，或手动指定 x-ui 版本安装${plain}"
             exit 1
         fi
-        echo -e "检测到 x-ui 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/jafariebi/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
+        echo -e "检测到 x-ui 最新版本：${last_version}，开始安装8888888888888888"
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/FranzKafkaYu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/jafariebi/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
+        url="https://github.com/FranzKafkaYu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
         echo -e "开始安装 x-ui v$1"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 x-ui v$1 失败，请确保此版本存在${plain}"
+            echo -e "${red}下载 x-ui v$1 失败，请确保此版本888888844444444存在${plain}"
             exit 1
         fi
     fi
