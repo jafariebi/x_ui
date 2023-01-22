@@ -98,48 +98,6 @@ install() {
     fi
 }
 
-update() {
-    read -rp "This function will update the X-UI panel to the latest version. Data will not be lost. Whether to continues? [Y/N]: " yn
-    if [[ $yn =~ "Y"|"y" ]]; then
-        systemctl stop x-ui
-        if [[ -e /usr/local/x-ui/ ]]; then
-            cd
-            rm -rf /usr/local/x-ui/
-        fi
-        
-        last_version=$(curl -Ls "https://api.github.com/repos/jafariebi/x_ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') || last_version=$(curl -sm8 https://raw.githubusercontent.com/jafariebi/x_ui/main/config/version)
-        
-        yellow "The latest version of X-UI is: $ {last_version}, starting update..."
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/jafariebi/x_ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
-        if [[ $? -ne 0 ]]; then
-            red "Download the X-UI failure, please make sure your server can connect and download the files from github"
-        fi
-        
-        cd /usr/local/
-        tar zxvf x-ui-linux-$(archAffix).tar.gz
-        rm -f x-ui-linux-$(archAffix).tar.gz
-        
-        cd x-ui
-        chmod +x x-ui bin/xray-linux-$(archAffix)
-        cp -f x-ui.service /etc/systemd/system/
-        
-        wget -N --no-check-certificate https://raw.githubusercontent.com/jafariebi/x_ui/main/x-ui.sh -O /usr/bin/x-ui
-        chmod +x /usr/local/x-ui/x-ui.sh
-        chmod +x /usr/bin/x-ui
-        
-        systemctl daemon-reload
-        systemctl enable x-ui >/dev/null 2>&1
-        systemctl start x-ui
-        systemctl restart x-ui
-        
-        green "The update is completed, and the X-UI panel has been automatically restarted "
-        exit 1
-    else
-        red "The upgrade X-UI panel has been canceled!"
-        exit 1
-    fi
-}
-
 uninstall() {
     confirm "Are you sure to uninstall the X-UI panel, it will uninstall XRAY also?" "n"
     if [[ $? != 0 ]]; then
